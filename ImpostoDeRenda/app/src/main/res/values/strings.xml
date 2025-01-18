@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ImpostoDeRenda</string>
+    <string name="gastos_str">Gastos (R$)</string>
+    <string name="salario_str">Salário (R$)</string>
+    <string name="result_str">R$ 0</string>
+    <string name="calcular_str">CALCULAR</string>
+    <string name="imposto_de_renda_str">SEU IMPOSTO DE RENDA SERÁ:</string>
+    <string name="gastos_totais_saude_educacao_str">Gastos totais com saúde e educação</string>
+    <string name="salario_mensal_str">Salário mensal</string>
+</resources>
