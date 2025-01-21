@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.CuriositiesActivity">
+
+    <ImageButton
+        android:id="@+id/catButton"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:background="@color/principal"
+        android:contentDescription="@string/cat_image"
+        android:padding="18dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toStartOf="@+id/dogButton"
+        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cat"
+        app:tint="@color/amarelo" />
+
+    <ImageButton
+        android:id="@+id/dogButton"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:background="@color/principal"
+        android:contentDescription="@string/dog_image"
+        android:padding="30dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/catButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dog"
+        app:tint="@color/branco" />
+
+    <TextView
+        android:id="@+id/curiosidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/curiosidade"
+        app:layout_constraintBottom_toTopOf="@+id/btn_gerar_frase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ola_usuario" />
+
+
+    <Button
+        android:id="@+id/btn_gerar_frase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/gerar_outra_frase"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/ola_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/ola_usuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dogButton" />
+
+    <View
+        android:layout_width="200dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/principal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/curiosidade" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

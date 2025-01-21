@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CatsAndDogs</string>
+    <string name="frases_de_gatos_e_cachorros">Frases de gatos e cachorros</string>
+    <string name="digite_seu_nome">Digite seu nome</string>
+    <string name="guardar">GUARDAR</string>
+    <string name="curiosidade">Curiosidade</string>
+    <string name="gerar_outra_frase">GERAR OUTRA FRASE</string>
+    <string name="ola_usuario">Olá, %1$s</string>
+    <string name="cat_image">Cat Image</string>
+    <string name="dog_image">Dog Image</string>
+</resources>
