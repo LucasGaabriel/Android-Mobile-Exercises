@@ -29,6 +29,7 @@
         android:hint="@string/digite_seu_nome"
         android:inputType="text"
         android:textAlignment="center"
+        android:textColor="@color/branco"
         android:textColorHint="@color/branco"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_guardar"

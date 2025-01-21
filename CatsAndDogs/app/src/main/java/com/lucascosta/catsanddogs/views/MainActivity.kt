@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.lucascosta.catsanddogs.R
-import com.lucascosta.catsanddogs.databinding.ActivityMainBinding
 import com.lucascosta.catsanddogs.configs.MyPreferences
+import com.lucascosta.catsanddogs.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -26,17 +26,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             insets
         }
 
-        if (MyPreferences(this).getString("nome") != ""){
+        if (MyPreferences(this).getString("nome") != "") {
             startActivity(Intent(this, CuriositiesActivity::class.java))
             finish()
         }
 
         binding.btnGuardar.setOnClickListener(this)
-
     }
 
     override fun onClick(view: View) {
-        if (view.id == R.id.btn_guardar){
+        if (view.id == R.id.btn_guardar) {
             val sp = MyPreferences(this)
             sp.setString("nome", binding.nome.text.toString())
             startActivity(Intent(this, CuriositiesActivity::class.java))
