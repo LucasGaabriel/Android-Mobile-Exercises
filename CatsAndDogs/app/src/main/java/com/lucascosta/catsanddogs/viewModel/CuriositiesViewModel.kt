@@ -1,8 +1,10 @@
 package com.lucascosta.catsanddogs.viewModel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.lucascosta.catsanddogs.data.room.AppDatabase
 import com.lucascosta.catsanddogs.repository.api.client.ClientRetrofitCat
 import com.lucascosta.catsanddogs.repository.api.client.ClientRetrofitDog
 import com.lucascosta.catsanddogs.repository.api.model.CatEntity
@@ -13,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CuriositiesViewModel : ViewModel() {
+class CuriositiesViewModel(application: Application) : AndroidViewModel(application) {
     private var currentAnimal = MutableLiveData<String>()
     private var currentCuriosity = MutableLiveData<String>()
 
@@ -31,6 +33,10 @@ class CuriositiesViewModel : ViewModel() {
     }
 
     fun newCuriosity(animal: String) {
+
+        val dogDB = AppDatabase.getDatabase(getApplication()).DogDAO()
+        val catDB = AppDatabase.getDatabase(getApplication()).CatDAO()
+
         when (animal) {
             "cat" -> {
                 val catService = ClientRetrofitCat.createService(CatService::class.java)
