@@ -3,16 +3,17 @@ package com.lucascosta.catsanddogs.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lucascosta.catsanddogs.repository.CuriositiesRepository
-import com.lucascosta.catsanddogs.repository.api.client.ClientRetrofit
+import com.lucascosta.catsanddogs.repository.api.client.ClientRetrofitCat
+import com.lucascosta.catsanddogs.repository.api.client.ClientRetrofitDog
+import com.lucascosta.catsanddogs.repository.api.model.CatEntity
 import com.lucascosta.catsanddogs.repository.api.model.DogEntity
+import com.lucascosta.catsanddogs.repository.api.service.CatService
 import com.lucascosta.catsanddogs.repository.api.service.DogService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CuriositiesViewModel : ViewModel() {
-    private var curiosityRepository = CuriositiesRepository()
     private var currentAnimal = MutableLiveData<String>()
     private var currentCuriosity = MutableLiveData<String>()
 
@@ -30,33 +31,42 @@ class CuriositiesViewModel : ViewModel() {
     }
 
     fun newCuriosity(animal: String) {
-        var curiosity: String? = ""
-
         when (animal) {
             "cat" -> {
+                val catService = ClientRetrofitCat.createService(CatService::class.java)
+                val newFact: Call<CatEntity> = catService.getNewFact()
 
+                newFact.enqueue(object : Callback<CatEntity> {
+                    override fun onResponse(
+                        call: Call<CatEntity>, response: Response<CatEntity>
+                    ) {
+                        val catEntity = response.body()
+                        currentCuriosity.value = catEntity?.fact
+                    }
+
+                    override fun onFailure(call: Call<CatEntity>, t: Throwable) {
+                        currentCuriosity.value = "Falha na requisição da API"
+                    }
+                })
             }
 
             "dog" -> {
-                val dogService = ClientRetrofit.createService(DogService::class.java)
+                val dogService = ClientRetrofitDog.createService(DogService::class.java)
                 val newFact: Call<DogEntity> = dogService.getNewFact()
 
                 newFact.enqueue(object : Callback<DogEntity> {
                     override fun onResponse(
-                        call: Call<DogEntity>,
-                        response: Response<DogEntity>
+                        call: Call<DogEntity>, response: Response<DogEntity>
                     ) {
                         val dogEntity = response.body()
-                        curiosity = dogEntity?.facts?.get(1)
+                        currentCuriosity.value = dogEntity?.facts?.get(0)
                     }
 
                     override fun onFailure(call: Call<DogEntity>, t: Throwable) {
-                        curiosity = "Falha na requisição da API"
+                        currentCuriosity.value = "Falha na requisição da API"
                     }
                 })
             }
         }
-
-        currentCuriosity.value = curiosity
     }
 }

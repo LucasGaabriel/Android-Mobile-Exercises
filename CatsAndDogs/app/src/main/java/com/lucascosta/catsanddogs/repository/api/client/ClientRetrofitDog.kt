@@ -1,13 +1,14 @@
 package com.lucascosta.catsanddogs.repository.api.client
 
+import com.lucascosta.catsanddogs.utils.Constants.API.BASE_DOG_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ClientRetrofit {
+class ClientRetrofitDog {
     companion object {
         private lateinit var INSTANCE: Retrofit
-        private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
+        private const val BASE_URL = BASE_DOG_URL
 
         private fun getRetrofitInstance(): Retrofit {
             val http = OkHttpClient.Builder()
